@@ -194,3 +194,8 @@ exports.default = series(
   livePreview, // Live Preview Build
   watchFiles // Watch for Live Changes
 );
+exports.prod = series(
+  devClean, // Clean Dist Folder
+  resetPages,
+  parallel(copyFonts, concatCssPlugins, compileSCSS, javascriptBuild, devImages, compileHTML),
+);
